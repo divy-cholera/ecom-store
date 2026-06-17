@@ -1,0 +1,7 @@
+# Only push frontend — ignore everything else
+/*
+!/frontend
+!/.gitignore
+!/README.md
+/frontend/node_modules
+/frontend/dist
