@@ -4,11 +4,16 @@ import { ShoppingCart } from 'lucide-react';
 export default function ProductCard({ product, onAddToCart }) {
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
-      <img
-        src={product.image}
-        alt={product.name}
-        className="w-full h-52 object-cover"
-      />
+      <div className="relative">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="w-full h-52 object-cover"
+        />
+        <span className="absolute top-2 left-2 bg-white/90 backdrop-blur text-xs font-medium text-gray-600 px-2 py-0.5 rounded-full">
+          {product.category}
+        </span>
+      </div>
       <div className="p-4 flex flex-col gap-2">
         <h3 className="font-semibold text-gray-900">{product.name}</h3>
         <p className="text-sm text-gray-500 line-clamp-2">{product.description}</p>
