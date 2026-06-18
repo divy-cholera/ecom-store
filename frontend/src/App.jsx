@@ -1,7 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import {
-  ArrowUpDown, Package, DollarSign, ShoppingBag, Star
-} from 'lucide-react';
+import { ArrowUpDown } from 'lucide-react';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import ProductCard from './components/ProductCard';
@@ -22,19 +20,6 @@ const PAGE_TITLES = {
   wishlist: { title: 'Wishlist', subtitle: '5 saved items' },
   settings: { title: 'Settings', subtitle: 'Account & preferences' }
 };
-
-function StatCard({ label, value, sub, icon: Icon, accent }) {
-  return (
-    <div className="bg-white border border-gray-200 rounded-xl p-4">
-      <div className="flex items-center justify-between mb-2">
-        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">{label}</span>
-        <Icon size={15} className={accent} />
-      </div>
-      <p className="text-2xl font-semibold text-gray-900">{value}</p>
-      {sub && <p className="text-xs text-gray-400 mt-1">{sub}</p>}
-    </div>
-  );
-}
 
 export default function App() {
   const [cart, setCart] = useState([]);
@@ -87,7 +72,6 @@ export default function App() {
   };
 
   const cartCount = cart.reduce((sum, i) => sum + i.qty, 0);
-  const cartTotal = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
   const { title: pageTitle, subtitle: pageSubtitle } = PAGE_TITLES[activePage];
 
   return (
@@ -105,14 +89,6 @@ export default function App() {
         />
 
         <main className="flex-1 overflow-y-auto px-6 py-6 bg-gray-50/50">
-          {/* Stat cards */}
-          <div className="grid grid-cols-4 gap-4 mb-6">
-            <StatCard label="Total Products" value={products.length} sub="across 5 categories" icon={Package} accent="text-gray-400" />
-            <StatCard label="In Cart" value={cartCount} sub={cartCount ? `$${cartTotal.toFixed(2)} total` : 'empty'} icon={ShoppingBag} accent="text-indigo-500" />
-            <StatCard label="Avg Price" value={`$${(products.reduce((s, p) => s + p.price, 0) / products.length).toFixed(0)}`} sub="across catalog" icon={DollarSign} accent="text-green-500" />
-            <StatCard label="Top Rated" value="4.8" sub="142 reviews" icon={Star} accent="text-amber-500" />
-          </div>
-
           {/* Category Tabs + Sort */}
           <div className="flex flex-wrap items-center gap-2 mb-4">
             {CATEGORIES.map((cat) => {
