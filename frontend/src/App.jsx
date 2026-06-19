@@ -75,7 +75,7 @@ export default function App() {
   const { title: pageTitle, subtitle: pageSubtitle } = PAGE_TITLES[activePage];
 
   return (
-    <div className="flex h-screen bg-white">
+    <div className="flex h-screen bg-page">
       <Sidebar activePage={activePage} onNavigate={setActivePage} />
 
       <div className="flex-1 flex flex-col overflow-hidden">
@@ -88,7 +88,7 @@ export default function App() {
           pageSubtitle={pageSubtitle}
         />
 
-        <main className="flex-1 overflow-y-auto px-6 py-6 bg-gray-50/50">
+        <main className="flex-1 overflow-y-auto px-6 py-6 bg-page">
           {/* Category Tabs + Sort */}
           <div className="flex flex-wrap items-center gap-2 mb-4">
             {CATEGORIES.map((cat) => {
@@ -97,26 +97,26 @@ export default function App() {
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors cursor-pointer ${
+                  className={`px-4 py-1.5 rounded-full text-sm font-normal transition-colors cursor-pointer ${
                     activeCategory === cat
-                      ? 'bg-indigo-600 text-white'
-                      : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
+                      ? 'bg-primary text-white'
+                      : 'bg-card text-sn-secondary border border-subtle hover:bg-tertiary'
                   }`}
                 >
                   {cat}
-                  <span className={`ml-1.5 text-xs ${activeCategory === cat ? 'text-indigo-200' : 'text-gray-400'}`}>
+                  <span className={`ml-1.5 text-xs ${activeCategory === cat ? 'text-primary-300' : 'text-sn-tertiary'}`}>
                     {count}
                   </span>
                 </button>
               );
             })}
 
-            <div className="ml-auto flex items-center gap-1.5 text-sm text-gray-500">
+            <div className="ml-auto flex items-center gap-1.5 text-sm text-sn-secondary">
               <ArrowUpDown size={14} />
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="bg-white border border-gray-200 rounded-lg px-2 py-1.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer"
+                className="bg-card border border-subtle rounded-field px-2 py-1.5 text-sm text-sn-primary focus:outline-none focus:ring-2 focus:ring-primary/10 cursor-pointer"
               >
                 {SORT_OPTIONS.map((o) => (
                   <option key={o.value} value={o.value}>{o.label}</option>
@@ -126,9 +126,9 @@ export default function App() {
           </div>
 
           {/* Result count */}
-          <p className="text-sm text-gray-400 mb-4">
+          <p className="text-sm text-sn-tertiary mb-4">
             {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''}
-            {search && <span className="ml-1">matching "<strong className="text-gray-600">{search}</strong>"</span>}
+            {search && <span className="ml-1">matching "<strong className="text-sn-secondary">{search}</strong>"</span>}
           </p>
 
           {/* Product Grid */}
@@ -139,7 +139,7 @@ export default function App() {
           </div>
 
           {filteredProducts.length === 0 && (
-            <p className="text-center text-gray-400 mt-16">No products found. Try a different search or category.</p>
+            <p className="text-center text-sn-tertiary mt-16">No products found. Try a different search or category.</p>
           )}
         </main>
       </div>
