@@ -1,4 +1,4 @@
-# E-Commerce Store
+# Alectri
 
 A minimal e-commerce storefront built with React, Vite, and TailwindCSS.
 
