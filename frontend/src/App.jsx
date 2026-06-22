@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { ArrowUpDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import ProductCard from './components/ProductCard';
@@ -7,11 +7,22 @@ import CartSidebar from './components/CartSidebar';
 import products, { CATEGORIES } from './data/products';
 
 const SORT_OPTIONS = [
-  { value: 'default', label: 'Default' },
+  { value: 'default', label: 'Sort by' },
   { value: 'price-asc', label: 'Price: Low → High' },
   { value: 'price-desc', label: 'Price: High → Low' },
   { value: 'name-asc', label: 'Name: A → Z' }
 ];
+
+const PRICE_RANGES = [
+  { value: 'all', label: 'Price range' },
+  { value: '0-25', label: 'Under $25' },
+  { value: '25-50', label: '$25 – $50' },
+  { value: '50-100', label: '$50 – $100' },
+  { value: '100+', label: 'Over $100' }
+];
+
+const FILTER_SELECT_CLASS =
+  'appearance-none bg-white border border-[#d1d5db] rounded-full px-4 py-1.5 pr-8 text-sm font-medium text-[#374151] hover:bg-[#f3f4f6] focus:outline-none focus:ring-2 focus:ring-action/20 cursor-pointer transition-colors';
 
 const PAGE_TITLES = {
   shop: { title: 'Shop', subtitle: 'Browse our full catalog' },
@@ -26,6 +37,7 @@ export default function App() {
   const [cartOpen, setCartOpen] = useState(false);
   const [activePage, setActivePage] = useState('shop');
   const [activeCategory, setActiveCategory] = useState('All');
+  const [priceRange, setPriceRange] = useState('all');
   const [sortBy, setSortBy] = useState('default');
   const [search, setSearch] = useState('');
 
@@ -33,6 +45,13 @@ export default function App() {
     let items = activeCategory === 'All'
       ? products
       : products.filter((p) => p.category === activeCategory);
+
+    if (priceRange !== 'all') {
+      const [min, max] = priceRange === '100+'
+        ? [100, Infinity]
+        : priceRange.split('-').map(Number);
+      items = items.filter((p) => p.price >= min && p.price < (max === Infinity ? max : max + 0.01));
+    }
 
     const q = search.trim().toLowerCase();
     if (q) {
@@ -48,7 +67,7 @@ export default function App() {
     else if (sortBy === 'name-asc') items = [...items].sort((a, b) => a.name.localeCompare(b.name));
 
     return items;
-  }, [activeCategory, sortBy, search]);
+  }, [activeCategory, priceRange, sortBy, search]);
 
   const addToCart = (product) => {
     setCart((prev) => {
@@ -89,39 +108,46 @@ export default function App() {
         />
 
         <main className="flex-1 overflow-y-auto px-6 py-6 bg-page">
-          {/* Category Tabs + Sort */}
-          <div className="flex flex-wrap items-center gap-2 mb-4">
-            {CATEGORIES.map((cat) => {
-              const count = cat === 'All' ? products.length : products.filter((p) => p.category === cat).length;
-              return (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`px-4 py-1.5 rounded-full text-sm font-normal transition-colors cursor-pointer ${
-                    activeCategory === cat
-                      ? 'bg-primary text-white'
-                      : 'bg-card text-sn-secondary border border-subtle hover:bg-tertiary'
-                  }`}
-                >
-                  {cat}
-                  <span className={`ml-1.5 text-xs ${activeCategory === cat ? 'text-primary-300' : 'text-sn-tertiary'}`}>
-                    {count}
-                  </span>
-                </button>
-              );
-            })}
+          {/* Filter Dropdowns */}
+          <div className="flex flex-wrap items-center gap-3 mb-4">
+            <div className="relative">
+              <select
+                value={activeCategory}
+                onChange={(e) => setActiveCategory(e.target.value)}
+                className={FILTER_SELECT_CLASS}
+              >
+                <option value="All">All categories</option>
+                {CATEGORIES.filter((c) => c !== 'All').map((cat) => (
+                  <option key={cat} value={cat}>{cat}</option>
+                ))}
+              </select>
+              <ChevronDown size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#374151] pointer-events-none" />
+            </div>
 
-            <div className="ml-auto flex items-center gap-1.5 text-sm text-sn-secondary">
-              <ArrowUpDown size={14} />
+            <div className="relative">
+              <select
+                value={priceRange}
+                onChange={(e) => setPriceRange(e.target.value)}
+                className={FILTER_SELECT_CLASS}
+              >
+                {PRICE_RANGES.map((r) => (
+                  <option key={r.value} value={r.value}>{r.label}</option>
+                ))}
+              </select>
+              <ChevronDown size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#374151] pointer-events-none" />
+            </div>
+
+            <div className="relative">
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="bg-card border border-subtle rounded-field px-2 py-1.5 text-sm text-sn-primary focus:outline-none focus:ring-2 focus:ring-primary/10 cursor-pointer"
+                className={FILTER_SELECT_CLASS}
               >
                 {SORT_OPTIONS.map((o) => (
                   <option key={o.value} value={o.value}>{o.label}</option>
                 ))}
               </select>
+              <ChevronDown size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#374151] pointer-events-none" />
             </div>
           </div>
 

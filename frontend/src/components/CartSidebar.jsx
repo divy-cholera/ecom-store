@@ -62,7 +62,7 @@ export default function CartSidebar({ cart, onClose, onUpdateQty, onRemove }) {
               <span>Total</span>
               <span>${total.toFixed(2)}</span>
             </div>
-            <button className="w-full bg-primary text-white py-3 rounded-field font-normal hover:bg-primary-900 transition-colors cursor-pointer">
+            <button className="w-full bg-action text-white py-3 rounded-field font-normal hover:bg-action-hover transition-colors cursor-pointer">
               Checkout
             </button>
           </div>

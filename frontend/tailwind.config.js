@@ -48,6 +48,10 @@ export default {
         warning: '#8d6e00',
         error:   '#e2161c',
         link:    '#2d637d',
+        action: {
+          DEFAULT: '#0080A3',
+          hover:   '#007393',
+        },
       },
       backgroundColor: {
         page:     '#f4f3f0',
