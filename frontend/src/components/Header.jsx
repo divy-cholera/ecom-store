@@ -2,9 +2,9 @@ import React from 'react';
 import { ShoppingCart, Bell, Search } from 'lucide-react';
 
 const STAFF = [
-  { name: 'Ava M', color: 'bg-violet-500' },
-  { name: 'Raj P', color: 'bg-sky-500' },
-  { name: 'Sara K', color: 'bg-amber-500' }
+  { name: 'Ava M', color: 'bg-primary-800' },
+  { name: 'Raj P', color: 'bg-primary-500' },
+  { name: 'Sara K', color: 'bg-accent-400' }
 ];
 
 function Avatar({ name, color }) {
@@ -12,7 +12,7 @@ function Avatar({ name, color }) {
   return (
     <span
       title={name}
-      className={`inline-flex items-center justify-center w-7 h-7 rounded-full text-white text-[10px] font-semibold ring-2 ring-white ${color}`}
+      className={`inline-flex items-center justify-center w-7 h-7 rounded-full text-white text-[10px] font-normal ring-2 ring-page ${color}`}
     >
       {initials}
     </span>
@@ -21,32 +21,32 @@ function Avatar({ name, color }) {
 
 export default function Header({ cartCount, onCartOpen, search, onSearchChange, pageTitle, pageSubtitle }) {
   return (
-    <header className="flex items-center justify-between px-6 py-3 border-b border-gray-200 bg-white">
+    <header className="flex items-center justify-between px-6 py-3 border-b border-subtle bg-page">
       {/* Left — Title */}
       <div>
-        <h2 className="text-base font-semibold text-gray-900">{pageTitle}</h2>
-        <p className="text-xs text-gray-400">{pageSubtitle}</p>
+        <h2 className="text-base font-normal text-sn-primary">{pageTitle}</h2>
+        <p className="text-xs text-sn-tertiary">{pageSubtitle}</p>
       </div>
 
       {/* Right — Search, Notifications, Staff, Cart */}
       <div className="flex items-center gap-3">
         {/* Search */}
         <div className="relative">
-          <Search size={14} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400" />
+          <Search size={14} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-sn-tertiary" />
           <input
             type="text"
             value={search}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Search products..."
             aria-label="Search products"
-            className="w-56 text-sm pl-8 pr-3 py-1.5 rounded-lg border border-gray-200 bg-white text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-300"
+            className="w-56 text-sm pl-8 pr-3 py-1.5 rounded-field border border-subtle bg-card text-sn-primary placeholder-sn-tertiary focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary-400"
           />
         </div>
 
         {/* Notification bell */}
-        <button className="relative p-2 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer">
+        <button className="relative p-2 text-sn-tertiary hover:text-sn-primary transition-colors cursor-pointer">
           <Bell size={18} />
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
+          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-accent rounded-full" />
         </button>
 
         {/* Staff avatars */}
@@ -57,11 +57,11 @@ export default function Header({ cartCount, onCartOpen, search, onSearchChange, 
         {/* Cart */}
         <button
           onClick={onCartOpen}
-          className="relative p-2 hover:bg-gray-100 rounded-lg cursor-pointer"
+          className="relative p-2 hover:bg-tertiary rounded-[8px] cursor-pointer"
         >
           <ShoppingCart size={20} />
           {cartCount > 0 && (
-            <span className="absolute -top-0.5 -right-0.5 bg-indigo-600 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full">
+            <span className="absolute -top-0.5 -right-0.5 bg-accent text-accent-content text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full">
               {cartCount}
             </span>
           )}
