@@ -15,7 +15,7 @@ const products = [
     name: 'Smart Watch',
     price: 199.99,
     category: 'Electronics',
-    image: 'https://images.unsplash.com/photo-1546868871-af0de0ae72be?w=400&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop',
     description: 'Fitness tracking, heart-rate monitor, and notifications.'
   },
   {
@@ -31,7 +31,7 @@ const products = [
     name: 'Wireless Earbuds',
     price: 39.99,
     category: 'Electronics',
-    image: 'https://images.unsplash.com/photo-1590658268037-6bf12f032f55?w=400&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=400&h=400&fit=crop',
     description: 'Compact true-wireless earbuds with charging case.'
   },
 
@@ -125,7 +125,7 @@ const products = [
     name: 'Baseball Cap',
     price: 19.99,
     category: 'Accessories',
-    image: 'https://images.unsplash.com/photo-1588850561407-ed78c334e67a?w=400&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1556306535-0f09a537f0a3?w=400&h=400&fit=crop',
     description: 'Adjustable cotton cap with embroidered logo.'
   },
 
@@ -151,7 +151,7 @@ const products = [
     name: 'Throw Blanket',
     price: 42.99,
     category: 'Home',
-    image: 'https://images.unsplash.com/photo-1580301762395-21ce6d555b43?w=400&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1616627561950-9f746e330187?w=400&h=400&fit=crop',
     description: 'Ultra-soft knitted throw, 130×170 cm.'
   }
 ];
