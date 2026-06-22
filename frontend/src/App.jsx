@@ -4,6 +4,7 @@ import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import ProductCard from './components/ProductCard';
 import CartSidebar from './components/CartSidebar';
+import SearchAutocomplete from './components/SearchAutocomplete';
 import products, { CATEGORIES } from './data/products';
 import useRecentSearches from './hooks/useRecentSearches';
 
@@ -103,19 +104,25 @@ export default function App() {
         <Header
           cartCount={cartCount}
           onCartOpen={() => setCartOpen(true)}
-          search={search}
-          onSearchChange={setSearch}
-          products={products}
-          recentSearches={recentSearches}
-          onAddSearch={addSearch}
-          onClearRecentSearches={clearRecentSearches}
           pageTitle={pageTitle}
           pageSubtitle={pageSubtitle}
         />
 
         <main className="flex-1 overflow-y-auto px-6 py-6 bg-page">
-          {/* Filter Dropdowns */}
-          <div className="flex flex-wrap items-center gap-3 mb-4">
+          {/* Search + Filter Toolbar */}
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+            {/* Search bar — left */}
+            <SearchAutocomplete
+              search={search}
+              onSearchChange={setSearch}
+              products={products}
+              recentSearches={recentSearches}
+              onAddSearch={addSearch}
+              onClearRecentSearches={clearRecentSearches}
+            />
+
+            {/* Filters — right */}
+            <div className="flex flex-wrap items-center gap-3">
             <div className="relative">
               <select
                 value={activeCategory}
@@ -154,6 +161,7 @@ export default function App() {
                 ))}
               </select>
               <ChevronDown size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#374151] pointer-events-none" />
+            </div>
             </div>
           </div>
 

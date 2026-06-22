@@ -1,6 +1,5 @@
 import React from 'react';
 import { ShoppingCart, Bell } from 'lucide-react';
-import SearchAutocomplete from './SearchAutocomplete';
 
 const STAFF = [
   { name: 'Ava M', color: 'bg-primary-800' },
@@ -23,12 +22,6 @@ function Avatar({ name, color }) {
 export default function Header({
   cartCount,
   onCartOpen,
-  search,
-  onSearchChange,
-  products,
-  recentSearches,
-  onAddSearch,
-  onClearRecentSearches,
   pageTitle,
   pageSubtitle,
 }) {
@@ -40,17 +33,8 @@ export default function Header({
         <p className="text-xs text-sn-tertiary">{pageSubtitle}</p>
       </div>
 
-      {/* Right — Search, Notifications, Staff, Cart */}
+      {/* Right — Notifications, Staff, Cart */}
       <div className="flex items-center gap-3">
-        <SearchAutocomplete
-          search={search}
-          onSearchChange={onSearchChange}
-          products={products}
-          recentSearches={recentSearches}
-          onAddSearch={onAddSearch}
-          onClearRecentSearches={onClearRecentSearches}
-        />
-
         {/* Notification bell */}
         <button className="relative p-2 text-sn-tertiary hover:text-sn-primary transition-colors cursor-pointer">
           <Bell size={18} />
