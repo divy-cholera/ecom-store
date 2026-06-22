@@ -5,6 +5,7 @@ import Header from './components/Header';
 import ProductCard from './components/ProductCard';
 import CartSidebar from './components/CartSidebar';
 import products, { CATEGORIES } from './data/products';
+import useRecentSearches from './hooks/useRecentSearches';
 
 const SORT_OPTIONS = [
   { value: 'default', label: 'Sort by' },
@@ -40,6 +41,7 @@ export default function App() {
   const [priceRange, setPriceRange] = useState('all');
   const [sortBy, setSortBy] = useState('default');
   const [search, setSearch] = useState('');
+  const { recentSearches, addSearch, clearRecentSearches } = useRecentSearches();
 
   const filteredProducts = useMemo(() => {
     let items = activeCategory === 'All'
@@ -103,6 +105,10 @@ export default function App() {
           onCartOpen={() => setCartOpen(true)}
           search={search}
           onSearchChange={setSearch}
+          products={products}
+          recentSearches={recentSearches}
+          onAddSearch={addSearch}
+          onClearRecentSearches={clearRecentSearches}
           pageTitle={pageTitle}
           pageSubtitle={pageSubtitle}
         />

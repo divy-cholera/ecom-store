@@ -1,5 +1,6 @@
 import React from 'react';
-import { ShoppingCart, Bell, Search } from 'lucide-react';
+import { ShoppingCart, Bell } from 'lucide-react';
+import SearchAutocomplete from './SearchAutocomplete';
 
 const STAFF = [
   { name: 'Ava M', color: 'bg-primary-800' },
@@ -19,7 +20,18 @@ function Avatar({ name, color }) {
   );
 }
 
-export default function Header({ cartCount, onCartOpen, search, onSearchChange, pageTitle, pageSubtitle }) {
+export default function Header({
+  cartCount,
+  onCartOpen,
+  search,
+  onSearchChange,
+  products,
+  recentSearches,
+  onAddSearch,
+  onClearRecentSearches,
+  pageTitle,
+  pageSubtitle,
+}) {
   return (
     <header className="flex items-center justify-between px-6 py-3 border-b border-subtle bg-page">
       {/* Left — Title */}
@@ -30,18 +42,14 @@ export default function Header({ cartCount, onCartOpen, search, onSearchChange, 
 
       {/* Right — Search, Notifications, Staff, Cart */}
       <div className="flex items-center gap-3">
-        {/* Search */}
-        <div className="relative">
-          <Search size={14} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-sn-tertiary" />
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => onSearchChange(e.target.value)}
-            placeholder="Search products..."
-            aria-label="Search products"
-            className="w-56 text-sm pl-8 pr-3 py-1.5 rounded-field border border-subtle bg-card text-sn-primary placeholder-sn-tertiary focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary-400"
-          />
-        </div>
+        <SearchAutocomplete
+          search={search}
+          onSearchChange={onSearchChange}
+          products={products}
+          recentSearches={recentSearches}
+          onAddSearch={onAddSearch}
+          onClearRecentSearches={onClearRecentSearches}
+        />
 
         {/* Notification bell */}
         <button className="relative p-2 text-sn-tertiary hover:text-sn-primary transition-colors cursor-pointer">
