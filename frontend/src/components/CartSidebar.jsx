@@ -9,7 +9,7 @@ export default function CartSidebar({ cart, onClose, onUpdateQty, onRemove }) {
       <div className="absolute inset-0 bg-black/30" onClick={onClose} />
       <div className="relative w-full max-w-md bg-card h-full shadow-xl flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b">
+        <div className="flex items-center justify-between p-4 border-b border-subtle">
           <h2 className="text-lg font-normal flex items-center gap-2">
             <ShoppingBag size={20} /> Cart
           </h2>
@@ -57,12 +57,12 @@ export default function CartSidebar({ cart, onClose, onUpdateQty, onRemove }) {
 
         {/* Footer */}
         {cart.length > 0 && (
-          <div className="border-t p-4 space-y-3">
+          <div className="border-t border-subtle p-4 space-y-3">
             <div className="flex justify-between font-normal text-lg">
               <span>Total</span>
               <span>${total.toFixed(2)}</span>
             </div>
-            <button className="w-full bg-action text-white py-3 rounded-field font-normal hover:bg-action-hover transition-colors cursor-pointer">
+            <button className="w-full bg-primary text-primary-content py-3 rounded-field font-normal hover:bg-primary-900 transition-colors cursor-pointer">
               Checkout
             </button>
           </div>

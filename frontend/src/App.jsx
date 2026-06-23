@@ -22,7 +22,7 @@ const PRICE_RANGES = [
 ];
 
 const FILTER_SELECT_CLASS =
-  'appearance-none bg-white border border-[#d1d5db] rounded-full px-4 py-1.5 pr-8 text-sm font-medium text-[#374151] hover:bg-[#f3f4f6] focus:outline-none focus:ring-2 focus:ring-action/20 cursor-pointer transition-colors';
+  'appearance-none bg-card border border-subtle rounded-full px-4 py-1.5 pr-8 text-sm font-normal text-sn-secondary hover:bg-tertiary focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer transition-colors';
 
 const PAGE_TITLES = {
   shop: { title: 'Shop', subtitle: 'Browse our full catalog' },
@@ -121,7 +121,7 @@ export default function App() {
                   <option key={cat} value={cat}>{cat}</option>
                 ))}
               </select>
-              <ChevronDown size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#374151] pointer-events-none" />
+              <ChevronDown size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-sn-secondary pointer-events-none" />
             </div>
 
             <div className="relative">
@@ -134,7 +134,7 @@ export default function App() {
                   <option key={r.value} value={r.value}>{r.label}</option>
                 ))}
               </select>
-              <ChevronDown size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#374151] pointer-events-none" />
+              <ChevronDown size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-sn-secondary pointer-events-none" />
             </div>
 
             <div className="relative">
@@ -147,7 +147,7 @@ export default function App() {
                   <option key={o.value} value={o.value}>{o.label}</option>
                 ))}
               </select>
-              <ChevronDown size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#374151] pointer-events-none" />
+              <ChevronDown size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-sn-secondary pointer-events-none" />
             </div>
           </div>
 

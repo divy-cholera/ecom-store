@@ -85,10 +85,10 @@ export default function Sidebar({ activePage, onNavigate }) {
             <Icon size={16} />
             {label}
             {key === 'orders' && (
-              <span className="ml-auto text-[10px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-full font-medium">3</span>
+              <span className="ml-auto text-[10px] bg-[rgba(141,110,0,0.10)] text-warning px-1.5 py-0.5 rounded-full font-medium">3</span>
             )}
             {key === 'wishlist' && (
-              <span className="ml-auto text-[10px] bg-pink-100 text-pink-600 px-1.5 py-0.5 rounded-full font-medium">5</span>
+              <span className="ml-auto text-[10px] bg-[rgba(226,22,28,0.10)] text-error px-1.5 py-0.5 rounded-full font-medium">5</span>
             )}
           </button>
         ))}
