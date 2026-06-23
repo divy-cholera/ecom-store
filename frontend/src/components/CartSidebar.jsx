@@ -1,7 +1,14 @@
-import React from 'react';
-import { X, Plus, Minus, ShoppingBag } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, Plus, Minus, ShoppingBag, Trash2 } from 'lucide-react';
+import ConfirmModal from './ConfirmModal';
 
-export default function CartSidebar({ cart, onClose, onUpdateQty, onRemove }) {
+export default function CartSidebar({ cart, onClose, onUpdateQty, onRemove, onClearCart }) {
+  const [showClearModal, setShowClearModal] = useState(false);
+
+  const handleClear = () => {
+    onClearCart();
+    setShowClearModal(false);
+  };
   const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
   return (
@@ -55,6 +62,20 @@ export default function CartSidebar({ cart, onClose, onUpdateQty, onRemove }) {
           ))}
         </div>
 
+        {/* Clear Cart */}
+        {cart.length > 0 && (
+          <div className="px-4 pb-2">
+            <button
+              onClick={() => setShowClearModal(true)}
+              aria-label="Clear cart"
+              className="flex items-center gap-1.5 text-sm text-error/70 hover:text-error transition-colors cursor-pointer"
+            >
+              <Trash2 size={14} />
+              Clear Cart
+            </button>
+          </div>
+        )}
+
         {/* Footer */}
         {cart.length > 0 && (
           <div className="border-t p-4 space-y-3">
@@ -66,6 +87,16 @@ export default function CartSidebar({ cart, onClose, onUpdateQty, onRemove }) {
               Checkout
             </button>
           </div>
+        )}
+
+        {showClearModal && (
+          <ConfirmModal
+            title="Clear cart?"
+            body="This will remove all items from your cart."
+            confirmLabel="Clear"
+            onConfirm={handleClear}
+            onCancel={() => setShowClearModal(false)}
+          />
         )}
       </div>
     </div>
