@@ -31,7 +31,7 @@ jobs:
         working-directory: frontend
 
       - name: Build
-        run: npx vite build
+        run: ./node_modules/.bin/vite build
         working-directory: frontend
 
       - name: Upload artifact
