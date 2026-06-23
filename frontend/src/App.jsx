@@ -22,7 +22,7 @@ const PRICE_RANGES = [
 ];
 
 const FILTER_SELECT_CLASS =
-  'appearance-none bg-white border border-[#d1d5db] rounded-full px-4 py-1.5 pr-8 text-sm font-medium text-[#374151] hover:bg-[#f3f4f6] focus:outline-none focus:ring-2 focus:ring-action/20 cursor-pointer transition-colors';
+  'appearance-none bg-white border border-gray-300 rounded-md px-4 py-1.5 pr-8 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 cursor-pointer transition-colors';
 
 const PAGE_TITLES = {
   shop: { title: 'Shop', subtitle: 'Browse our full catalog' },
