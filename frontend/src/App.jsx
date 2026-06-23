@@ -90,6 +90,10 @@ export default function App() {
     setCart((prev) => prev.filter((i) => i.id !== id));
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
   const cartCount = cart.reduce((sum, i) => sum + i.qty, 0);
   const { title: pageTitle, subtitle: pageSubtitle } = PAGE_TITLES[activePage];
 
@@ -176,6 +180,7 @@ export default function App() {
           onClose={() => setCartOpen(false)}
           onUpdateQty={updateQty}
           onRemove={removeItem}
+          onClearCart={clearCart}
         />
       )}
     </div>
