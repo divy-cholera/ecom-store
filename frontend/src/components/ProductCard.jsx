@@ -21,7 +21,7 @@ export default function ProductCard({ product, onAddToCart }) {
           <span className="text-lg font-bold text-sn-primary">${product.price.toFixed(2)}</span>
           <button
             onClick={() => onAddToCart(product)}
-            className="flex items-center gap-1.5 bg-action text-white text-sm px-3 py-2 rounded-field hover:bg-action-hover transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 bg-primary text-primary-content text-sm px-3 py-2 rounded-field hover:bg-primary-900 transition-colors cursor-pointer"
           >
             <ShoppingCart size={16} />
             Add
