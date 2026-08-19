@@ -4,5 +4,6 @@
 !/.github
 !/.gitignore
 !/README.md
+!/Jenkinsfile
 /frontend/node_modules
 /frontend/dist
