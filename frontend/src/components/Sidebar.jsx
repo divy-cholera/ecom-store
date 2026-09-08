@@ -61,7 +61,7 @@ function Avatar({ name, color }) {
   );
 }
 
-export default function Sidebar({ activePage, onNavigate }) {
+export default function Sidebar({ activePage, onNavigate, wishlistCount = 0 }) {
   return (
     <aside className="w-60 border-r border-subtle bg-page flex flex-col h-screen sticky top-0">
       {/* Brand */}
@@ -87,8 +87,8 @@ export default function Sidebar({ activePage, onNavigate }) {
             {key === 'orders' && (
               <span className="ml-auto text-[10px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-full font-medium">3</span>
             )}
-            {key === 'wishlist' && (
-              <span className="ml-auto text-[10px] bg-pink-100 text-pink-600 px-1.5 py-0.5 rounded-full font-medium">5</span>
+            {key === 'wishlist' && wishlistCount > 0 && (
+              <span className="ml-auto text-[10px] bg-pink-100 text-pink-600 px-1.5 py-0.5 rounded-full font-medium">{wishlistCount}</span>
             )}
           </button>
         ))}
